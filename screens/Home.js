@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { withFirebaseHOC } from '../config/Firebase'
 
+
+
 class Home extends Component {
   handleSignout = async () => {
     try {
@@ -12,13 +14,33 @@ class Home extends Component {
       console.log(error)
     }
   }
+  
+  todo = async () => {
+    try {
+      //await this.props.firebase.signOut()
+      this.props.navigation.navigate('Todo')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   render() {
     return (
+      
       <View style={styles.container}>
         <Text>Home</Text>
         <Button
           title='Signout'
           onPress={this.handleSignout}
+          titleStyle={{
+            color: '#F57C00'
+          }}
+          type='clear'
+        />
+
+<Text>Todo</Text>
+        <Button
+          title='todo'
+          onPress={this.todo}
           titleStyle={{
             color: '#F57C00'
           }}
