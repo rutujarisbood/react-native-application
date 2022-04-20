@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View , SafeAreaView, FlatList,  TouchableOpacity, TouchableHighlight } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpacity, TouchableHighlight } from 'react-native';
+//import { Button } from 'react-native-elements';
 import { withFirebaseHOC } from '../config/Firebase';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
 const DashboardNames = [
   {
     id: 1,
     name: 'TASKS',
     icon: 'tasks',
-    page: 'Details'
+    page: 'Details',
+
   },
   {
     id: 2,
@@ -32,22 +33,27 @@ const DashboardNames = [
     id: 5,
     name: 'LEADING WOMEN',
     icon: 'users',
-    page: 'Details'
+    page: 'ProfileScreen',
+    //onpress
   },
 
 ];
 
-const GridView = ({ name, icon }) => (
-  <View style={styleSheet.gridStyle}>
-  <FontAwesome
-            name={icon}
-            size={40}
-  />
-    <Text style={styleSheet.gridText}>{name}</Text>
-  </View>
-);
+
 
 class Home extends Component {
+  
+
+  handleOnclick = async (pagename) => {
+    try {
+      //await this.props.firebase.signOut()
+      //(`${page}`)
+      this.props.navigation.navigate(pagename)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   handleSignout = async () => {
     try {
       await this.props.firebase.signOut()
@@ -57,6 +63,16 @@ class Home extends Component {
     }
   }
   render() {
+    const GridView = ({ name, icon,page }) => (
+      <View style={styleSheet.gridStyle}>
+      <FontAwesome
+                //icon={}
+                name={name}
+                size={40}
+      />
+        <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
+      </View>
+    );
     return (
       <SafeAreaView style={styleSheet.MainContainer}>
       <View>
