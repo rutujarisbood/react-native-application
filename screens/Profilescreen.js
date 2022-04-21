@@ -22,7 +22,6 @@ class ProfileScreen extends Component {
       };
 
       componentDidMount() {
-        /
         try {
             //return JSON.parse(await AsyncStorage.getItem("userDetails"))
             AsyncStorage.getItem('userDetails').then((value)=>{

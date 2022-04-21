@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpacity, TouchableHighlight } from 'react-native';
 //import { Button } from 'react-native-elements';
 import { withFirebaseHOC } from '../config/Firebase';
-import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const DashboardNames = [
   {
     id: 1,
@@ -38,9 +38,6 @@ const DashboardNames = [
   },
 
 ];
-
-
-
 class Home extends Component {
   
 
@@ -65,12 +62,11 @@ class Home extends Component {
   render() {
     const GridView = ({ name, icon,page }) => (
       <View style={styleSheet.gridStyle}>
-      <FontAwesome
-                //icon={}
-                name={name}
+      <FontAwesome style={styleSheet.iconStyle}
+                name={icon}
                 size={40}
       />
-        <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
+      <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
       </View>
     );
     return (
@@ -108,6 +104,9 @@ const styleSheet = StyleSheet.create({
   gridText: {
     fontSize: 20,
     color: 'black'
+  },
+  iconStyle: {
+  color: 'black'
   }
 })
 
