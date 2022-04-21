@@ -27,7 +27,7 @@ const DashboardNames = [
     id: 4,
     name: 'MEDITATION',
     icon: 'microphone',
-    page: 'Details'
+    page: 'About'
   },
   {
     id: 5,

@@ -46,7 +46,7 @@ class Login extends Component {
       const response = await this.props.firebase.loginWithEmail(email, password)
 
       if (response.user) {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ loggedin user is : "+response.user)
+        //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ loggedin user is : "+response.user.email)
         this.props.navigation.navigate('App')
         const jsonValue = JSON.stringify(response.user)
         await AsyncStorage.setItem('userDetails', jsonValue)

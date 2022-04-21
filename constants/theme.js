@@ -1,3 +1,6 @@
+import {Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('window');
+
 const colors = {
     accent: '#f77c45',
     primary: '#e4f5ea',
@@ -61,5 +64,18 @@ const colors = {
       fontSize: sizes.caption
     }
   };
+  export const COLORS = {
+    accent: '#FF7363',
+    purple: '#817DC0',
   
+    black: '#171717',
+    white: '#FFFFFF',
+    background: '#252C4A',
+  };
+  
+  export const SIZES = {
+    base: 10,
+    width,
+    height,
+  };
   export { colors, sizes, fonts };
