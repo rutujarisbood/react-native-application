@@ -8,7 +8,7 @@ const DashboardNames = [
     id: 1,
     name: 'TASKS',
     icon: 'tasks',
-    page: 'Details',
+    page: 'Todo',
 
   },
   {
@@ -36,13 +36,13 @@ const DashboardNames = [
     page: 'ProfileScreen',
     //onpress
   },
-  {
-    id: 6,
-    name: 'Tasks',
-    icon: 'users',
-    page: 'Todo',
-    //onpress
-  },
+  // {
+  //   id: 6,
+  //   name: 'Tasks',
+  //   icon: 'users',
+  //   page: 'Todo',
+  //   //onpress
+  // },
 
 ];
 
@@ -88,12 +88,13 @@ class Home extends Component {
                 name={name}
                 size={40}
       />
-        <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
+      <Text onPress={()=>this.handleOnclick(page)}>{name}</Text>
+        {/* <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button> */}
       </View>
     );
     return (
       <SafeAreaView style={styleSheet.MainContainer}>
-      <View>
+      <View > 
       <FlatList
           data={DashboardNames}
           renderItem={({item}) => <GridView name={item.name} icon={item.icon} page={item.page}/>}
@@ -102,31 +103,36 @@ class Home extends Component {
           key={item => item.id}
         />
         </View>
+        <View style={{position: 'absolute',bottom:0,left:0,right:0}}>
+          <View style={{ flexDirection:"row", }}>
+            <View style={{flex:1}}>
+              <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('Home')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>Home</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button color="#cfa5fa" style={{backgroundColor:'#000'}} title="home" onPress={()=>this.props.navigation.navigate('Home')} >hi</Button> */}
+            </View>
+            <View style={{flex:1}}>
+            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>Profile</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
+            </View>
+            <View style={{flex:1}}>
+            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>logout</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
+            </View>
+          </View>
+        
+        </View>
       </SafeAreaView>
-// =======
-      
-//       <View style={styles.container}>
-//         <Text>Home</Text>
-//         <Button
-//           title='Signout'
-//           onPress={this.handleSignout}
-//           titleStyle={{
-//             color: '#F57C00'
-//           }}
-//           type='clear'
-//         />
-
-// <Text>Todo</Text>
-//         <Button
-//           title='todo'
-//           onPress={this.todo}
-//           titleStyle={{
-//             color: '#F57C00'
-//           }}
-//           type='clear'
-//         />
-//       </View>
-// >>>>>>> origin/Sanjana-react-native
     )
   }
 }
@@ -149,7 +155,26 @@ const styleSheet = StyleSheet.create({
  
   gridText: {
     fontSize: 20,
-    color: 'black'
+    color: '#cfa5fa',
+    backgroundColor: '#cfa5fa'
+  },
+
+  gribottomButtondText: {
+    position: 'absolute',
+    bottom:0,
+    left:0,
+    fontSize: 20,
+    color: '##fff8dc',
+    backgroundColor: '#cfa5fa',
+  },
+
+  bottomNavView:{
+    height: 35,justifyContent: "center",alignItems: "center"
+  },
+
+  bottomNavText:{
+    color:'#71797e', textAlignVertical: "center",textAlign: "center",
+    fontSize:20,fontWeight:"bold"
   }
 })
 
