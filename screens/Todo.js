@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+//import { color } from 'react-native-reanimated';
 import Task from './../components/Task';
 
 export default function App() {
@@ -65,7 +66,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EAED',
+    backgroundColor: '#000',//'#E8EAED',
   },
   tasksWrapper: {
     paddingTop: 80,
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#FFF',
+    backgroundColor: '#000',
     borderRadius: 60,
     borderColor: '#C0C0C0',
     borderWidth: 3,
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   addWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#FFF',
+    backgroundColor: '#000',
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
