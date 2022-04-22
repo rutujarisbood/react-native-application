@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpacity, TouchableHighlight } from 'react-native';
-//import { Button } from 'react-native-elements';
 import { withFirebaseHOC } from '../config/Firebase';
-import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 const DashboardNames = [
   {
     id: 1,
@@ -21,7 +21,7 @@ const DashboardNames = [
     id: 3,
     name: 'ANNOUNCEMENTS',
     icon: 'bullhorn',
-    page: 'Details'
+    page: 'Announcements'
   },
   {
     id: 4,
@@ -42,8 +42,6 @@ const DashboardNames = [
 
 
 class Home extends Component {
-  
-
   handleOnclick = async (pagename) => {
     try {
       //await this.props.firebase.signOut()
@@ -65,9 +63,8 @@ class Home extends Component {
   render() {
     const GridView = ({ name, icon,page }) => (
       <View style={styleSheet.gridStyle}>
-      <FontAwesome
-                //icon={}
-                name={name}
+      <FontAwesome style={styleSheet.iconStyle}
+                name={icon}
                 size={40}
       />
         <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
@@ -104,9 +101,11 @@ const styleSheet = StyleSheet.create({
     margin: 10,
     backgroundColor: 'rgba(5, 70, 236, 0.48)'
   },
- 
   gridText: {
     fontSize: 20,
+    color: 'black'
+  },
+  iconStyle: {
     color: 'black'
   }
 })
