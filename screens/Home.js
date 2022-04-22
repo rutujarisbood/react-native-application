@@ -23,6 +23,14 @@ class Home extends Component {
       console.log(error)
     }
   }
+  reminder = async () => {
+    try {
+      //await this.props.firebase.signOut()
+      this.props.navigation.navigate('Reminder')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   render() {
     return (
       
@@ -41,6 +49,15 @@ class Home extends Component {
         <Button
           title='todo'
           onPress={this.todo}
+          titleStyle={{
+            color: '#F57C00'
+          }}
+          type='clear'
+        />
+        <Text>Reminder</Text>
+        <Button
+          title='Reminder'
+          onPress={this.reminder}
           titleStyle={{
             color: '#F57C00'
           }}
