@@ -3,6 +3,7 @@ import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpac
 //import { Button } from 'react-native-elements';
 import { withFirebaseHOC } from '../config/Firebase';
 import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
+import BottomNavigator from './BottomNavigator';
 const DashboardNames = [
   {
     id: 1,
@@ -11,17 +12,17 @@ const DashboardNames = [
     page: 'Todo',
 
   },
-  {
-    id: 2,
-    name: 'REMINDER',
-    icon: 'bell',
-    page: 'Details'
-  },
+  // {
+  //   id: 2,
+  //   name: 'REMINDER',
+  //   icon: 'bell',
+  //   page: 'Details'
+  // },
   {
     id: 3,
     name: 'ANNOUNCEMENTS',
     icon: 'bullhorn',
-    page: 'Details'
+    page: 'Announcements'
   },
   {
     id: 4,
@@ -33,7 +34,7 @@ const DashboardNames = [
     id: 5,
     name: 'LEADING WOMEN',
     icon: 'users',
-    page: 'ProfileScreen',
+    page: 'leadingLadies',
     //onpress
   },
   // {
@@ -85,7 +86,7 @@ class Home extends Component {
       <View style={styleSheet.gridStyle}>
       <FontAwesome
                 //icon={}
-                name={name}
+                name={icon}
                 size={40}
       />
       <Text onPress={()=>this.handleOnclick(page)}>{name}</Text>
@@ -103,35 +104,7 @@ class Home extends Component {
           key={item => item.id}
         />
         </View>
-        <View style={{position: 'absolute',bottom:0,left:0,right:0}}>
-          <View style={{ flexDirection:"row", }}>
-            <View style={{flex:1}}>
-              <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('Home')}>
-                <View style={styleSheet.bottomNavView}>
-                  <Text style={styleSheet.bottomNavText}>Home</Text>
-                </View>
-              </TouchableOpacity>
-              {/* <Button color="#cfa5fa" style={{backgroundColor:'#000'}} title="home" onPress={()=>this.props.navigation.navigate('Home')} >hi</Button> */}
-            </View>
-            <View style={{flex:1}}>
-            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
-                <View style={styleSheet.bottomNavView}>
-                  <Text style={styleSheet.bottomNavText}>Profile</Text>
-                </View>
-              </TouchableOpacity>
-              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-            </View>
-            <View style={{flex:1}}>
-            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
-                <View style={styleSheet.bottomNavView}>
-                  <Text style={styleSheet.bottomNavText}>logout</Text>
-                </View>
-              </TouchableOpacity>
-              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-            </View>
-          </View>
-        
-        </View>
+        <BottomNavigator navigation={this.props.navigation}/>
       </SafeAreaView>
     )
   }
@@ -148,7 +121,7 @@ const styleSheet = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 100,
+    height: 200,
     margin: 10,
     backgroundColor: 'rgba(5, 70, 236, 0.48)'
   },

@@ -48,7 +48,7 @@ class Login extends Component {
       if (response.user) {
         //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ loggedin user is : "+response.user.email)
         this.props.navigation.navigate('App')
-        const jsonValue = JSON.stringify(response.user)
+        const jsonValue = JSON.stringify(response)
         await AsyncStorage.setItem('userDetails', jsonValue)
       }
     } catch (error) {

@@ -74,7 +74,10 @@ class Signup extends Component {
 
       if (response.user.uid) {
         const { uid } = response.user
-        const userData = { email, name, uid }
+        const cntry=this.state.radioButton;
+        //console.log("nameeeeeeeeeeeeeeeeeeeeeeeeeeeeee:",name)
+        const userData = { email, name, ContactNumber, uid,cntry  }
+        //console.log("asdasdasdasdasdasdasd",userData)
         await this.props.firebase.createNewUser(userData)
         this.props.navigation.navigate('App')
         
