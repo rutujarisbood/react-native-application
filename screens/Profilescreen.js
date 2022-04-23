@@ -81,7 +81,7 @@ class ProfileScreen extends Component {
                                 //source={{ uri: this.state.imgURL}}
                                 style={{ width: 100, height: 100, alignSelf: 'center', marginTop: 20, marginBottom: 20, borderRadius: 50 }}
                             />
-                            <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginBottom: 50, marginBottom: 10 }} >{Users.username}</Text>
+                            <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginBottom: 50, marginBottom: 10 }} >Rutuja</Text>
                             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginStart: 10, marginBottom: 20, marginTop: 60 }}>
                                 <Ionicons name='location-outline' size={20} color={colors.black} />
                                 <Text style={{ fontWeight: '700' }}>About : </Text>

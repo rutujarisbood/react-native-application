@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar, Touchable
 //import database from '@react-native-firebase/database';
 import { withFirebaseHOC } from '../config/Firebase';
 import { AnnouncementData } from '../constants/AnnouncementData'
-import BottomNavigator from './BottomNavigator';
+//import BottomNavigator from './BottomNavigator';
 
 class Announcements extends Component {
     state = {
@@ -56,8 +56,6 @@ class Announcements extends Component {
                     )}
                 />
 
-
-                <BottomNavigator navigation={this.props.navigation} />
             </SafeAreaView>
         )
     }

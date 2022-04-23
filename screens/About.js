@@ -17,7 +17,7 @@ import { Meditation } from '../data/meditation'
 
 import { withFirebaseHOC } from '../config/Firebase'
 import { readDirectoryAsync } from 'expo-file-system';
-import BottomNavigator from './BottomNavigator';
+//import BottomNavigator from './BottomNavigator';
 
 // let sessions_data = [
 //     'Session 01', 
@@ -229,7 +229,6 @@ class About extends Component {
 
         </View>
 
-        <BottomNavigator navigation={this.props.navigation} />
       </SafeAreaView>
       // </View>
     );

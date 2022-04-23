@@ -91,18 +91,10 @@ class Todo extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-
-
-
             <View>
               
             </View>
           </View>
-
-
-          <BottomNavigator navigation={this.props.navigation}/>
-
-
         </View>
       </SafeAreaView>
     );

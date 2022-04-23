@@ -12,12 +12,12 @@ const DashboardNames = [
     page: 'Todo',
 
   },
-  {
-    id: 2,
-    name: 'REMINDER',
-    icon: 'bell',
-    page: 'Details'
-  },
+  // {
+  //   id: 2,
+  //   name: 'REMINDER',
+  //   icon: 'bell',
+  //   page: 'Details'
+  // },
   {
     id: 3,
     name: 'ANNOUNCEMENTS',
@@ -34,7 +34,7 @@ const DashboardNames = [
     id: 5,
     name: 'LEADING WOMEN',
     icon: 'users',
-    page: 'ProfileScreen',
+    page: 'leadingLadies',
     //onpress
   },
   // {
