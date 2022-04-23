@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyb
 //import { color } from 'react-native-reanimated';
 import Task from './../components/Task';
 import { withFirebaseHOC } from '../config/Firebase';
+import BottomNavigator from './BottomNavigator';
 
 //const [task, setTask] = useState();
 //const [taskItems, setTaskItems] = useState([]);
@@ -20,6 +21,14 @@ class Todo extends Component {
       //await this.props.firebase.signOut()
       //(`${page}`)
       this.props.navigation.navigate(pagename)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  handleSignout = async () => {
+    try {
+      await this.props.firebase.signOut()
+      //this.props.navigation.navigate('Login')
     } catch (error) {
       console.log(error)
     }
@@ -91,36 +100,7 @@ class Todo extends Component {
           </View>
 
 
-          <View style={{ position: 'absolute', bottom: '0%', left: 0, right: 0}}>
-            <View style={{ flexDirection: "row", }}>
-              <View >
-                <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('Home')}>
-                  <View style={styleSheet.bottomNavView}>
-                    <Text style={styleSheet.bottomNavText}>Home</Text>
-                  </View>
-                </TouchableOpacity>
-                {/* <Button color="#cfa5fa" style={{backgroundColor:'#000'}} title="home" onPress={()=>this.props.navigation.navigate('Home')} >hi</Button> */}
-              </View>
-
-              <View style={{ flex: 1 }}>
-                <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('ProfileScreen')}>
-                  <View style={styleSheet.bottomNavView}>
-                    <Text style={styleSheet.bottomNavText}>Profile</Text>
-                  </View>
-                </TouchableOpacity>
-                {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-              </View>
-
-              <View style={{ flex: 1 }}>
-                <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('ProfileScreen')}>
-                  <View style={styleSheet.bottomNavView}>
-                    <Text style={styleSheet.bottomNavText}>logout</Text>
-                  </View>
-                </TouchableOpacity>
-                {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-              </View>
-            </View>
-          </View>
+          <BottomNavigator navigation={this.props.navigation}/>
 
 
         </View>

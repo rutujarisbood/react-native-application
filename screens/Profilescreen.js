@@ -1,18 +1,13 @@
-//import React from 'react';
-//import { View, Text, Button, StyleSheet } from 'react-native';
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, Form, Row, Col, InputGroup, Text, View, Dimensions, FlatList, Modal, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
-//import { TabView, SceneMap,TabBar } from 'react-native-tab-view';
+import { StyleSheet, SafeAreaView, Form, Row, Col,Button, InputGroup, Text, View, Dimensions, FlatList, Modal, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
 import { colors } from '../constants/theme';
-//import PersonCard from '../components/PersonCard'
 import { Ionicons } from '@expo/vector-icons';
 //import { LinearGradient } from 'expo-linear-gradient';
 import LinearGradient from 'react-native-linear-gradient';
-//import { Colors} from 'react-native-paper';
-//import BrickList from 'react-native-masonry-brick-list';
-import UserProfile from '../model/users';
+import Users from '../model/users';
 import { withFirebaseHOC } from '../config/Firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BottomNavigator from './BottomNavigator';
 var x = {}; var value;
 
 class ProfileScreen extends Component {
@@ -26,6 +21,14 @@ class ProfileScreen extends Component {
             //await this.props.firebase.signOut()
             //(`${page}`)
             this.props.navigation.navigate(pagename)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    handleSignout = async () => {
+        try {
+            await this.props.firebase.signOut()
+            //this.props.navigation.navigate('Login')
         } catch (error) {
             console.log(error)
         }
@@ -78,7 +81,7 @@ class ProfileScreen extends Component {
                                 //source={{ uri: this.state.imgURL}}
                                 style={{ width: 100, height: 100, alignSelf: 'center', marginTop: 20, marginBottom: 20, borderRadius: 50 }}
                             />
-                            <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginBottom: 50, marginBottom: 10 }} >Rutuja</Text>
+                            <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginBottom: 50, marginBottom: 10 }} >{Users.username}</Text>
                             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginStart: 10, marginBottom: 20, marginTop: 60 }}>
                                 <Ionicons name='location-outline' size={20} color={colors.black} />
                                 <Text style={{ fontWeight: '700' }}>About : </Text>
@@ -91,41 +94,16 @@ class ProfileScreen extends Component {
                                 <Ionicons name='location-outline' size={20} color={colors.black} />
                                 <Text style={{ fontWeight: '700' }}>ProviderId :{x.providerData[0].providerId} </Text>
                             </View>
-
+                            {/* <Button
+                            
+                            title="PrivacyPolicy"
+                            //buttonStyle={{ borderColor: buttonColor, borderRadius: 20 }}
+                            //titleStyle={{ color: buttonColor }}
+                            onPress={() => this.handleOnclick('PrivacyPolicy')}
+                        /> */}
                         </View>
-
-                        <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
-                            <View style={{ flexDirection: "row", }}>
-                                <View style={{ flex: 1 }}>
-                                    <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('Home')}>
-                                        <View style={styleSheet.bottomNavView}>
-                                            <Text style={styleSheet.bottomNavText}>Home</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    {/* <Button color="#cfa5fa" style={{backgroundColor:'#000'}} title="home" onPress={()=>this.props.navigation.navigate('Home')} >hi</Button> */}
-                                </View>
-
-                                <View style={{ flex: 1 }}>
-                                    <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('ProfileScreen')}>
-                                        <View style={styleSheet.bottomNavView}>
-                                            <Text style={styleSheet.bottomNavText}>Profile</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-                                </View>
-
-                                <View style={{ flex: 1 }}>
-                                    <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() => this.handleOnclick('ProfileScreen')}>
-                                        <View style={styleSheet.bottomNavView}>
-                                            <Text style={styleSheet.bottomNavText}>logout</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
-                                </View>
-                            </View>
-
-
-                        </View>
+                        
+                        <BottomNavigator navigation={this.props.navigation} />
 
                         {/* </LinearGradient> */}
                     </View>
