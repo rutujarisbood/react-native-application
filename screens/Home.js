@@ -3,12 +3,13 @@ import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpac
 //import { Button } from 'react-native-elements';
 import { withFirebaseHOC } from '../config/Firebase';
 import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
+import BottomNavigator from './BottomNavigator';
 const DashboardNames = [
   {
     id: 1,
     name: 'TASKS',
     icon: 'tasks',
-    page: 'Details',
+    page: 'Todo',
 
   },
   {
@@ -21,7 +22,7 @@ const DashboardNames = [
     id: 3,
     name: 'ANNOUNCEMENTS',
     icon: 'bullhorn',
-    page: 'Details'
+    page: 'Announcements'
   },
   {
     id: 4,
@@ -36,8 +37,17 @@ const DashboardNames = [
     page: 'ProfileScreen',
     //onpress
   },
+  // {
+  //   id: 6,
+  //   name: 'Tasks',
+  //   icon: 'users',
+  //   page: 'Todo',
+  //   //onpress
+  // },
 
 ];
+
+
 
 
 
@@ -62,6 +72,15 @@ class Home extends Component {
       console.log(error)
     }
   }
+  
+  // todo = async () => {
+  //   try {
+  //     //await this.props.firebase.signOut()
+  //     this.props.navigation.navigate('Todo')
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   render() {
     const GridView = ({ name, icon,page }) => (
       <View style={styleSheet.gridStyle}>
@@ -70,12 +89,13 @@ class Home extends Component {
                 name={name}
                 size={40}
       />
-        <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button>
+      <Text onPress={()=>this.handleOnclick(page)}>{name}</Text>
+        {/* <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button> */}
       </View>
     );
     return (
       <SafeAreaView style={styleSheet.MainContainer}>
-      <View>
+      <View > 
       <FlatList
           data={DashboardNames}
           renderItem={({item}) => <GridView name={item.name} icon={item.icon} page={item.page}/>}
@@ -84,6 +104,7 @@ class Home extends Component {
           key={item => item.id}
         />
         </View>
+        <BottomNavigator navigation={this.props.navigation}/>
       </SafeAreaView>
     )
   }
@@ -107,7 +128,26 @@ const styleSheet = StyleSheet.create({
  
   gridText: {
     fontSize: 20,
-    color: 'black'
+    color: '#cfa5fa',
+    backgroundColor: '#cfa5fa'
+  },
+
+  gribottomButtondText: {
+    position: 'absolute',
+    bottom:0,
+    left:0,
+    fontSize: 20,
+    color: '##fff8dc',
+    backgroundColor: '#cfa5fa',
+  },
+
+  bottomNavView:{
+    height: 35,justifyContent: "center",alignItems: "center"
+  },
+
+  bottomNavText:{
+    color:'#71797e', textAlignVertical: "center",textAlign: "center",
+    fontSize:20,fontWeight:"bold"
   }
 })
 

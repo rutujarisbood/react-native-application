@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { StyleSheet, SafeAreaView, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity,ScrollView, StatusBar } from 'react-native'
 import { Button, CheckBox } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons'
 import { Formik } from 'formik'
@@ -18,6 +18,10 @@ const validationSchema = Yup.object().shape({
     .label('Email')
     .email('Enter a valid email')
     .required('Please enter a registered email'),
+  ContactNumber: Yup.string()
+    .label('ContactNumber')
+    .required()
+    .min(10, 'Contact number should be 10 digits '),
   password: Yup.string()
     .label('Password')
     .required()
@@ -27,6 +31,7 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
   check: Yup.boolean().oneOf([true], 'Please check the agreement')
 })
+
 
 class Signup extends Component {
   state = {
@@ -60,14 +65,18 @@ class Signup extends Component {
     try {
       const response = await this.props.firebase.signupWithEmail(
         email,
-        password
+        password,
       )
 
       if (response.user.uid) {
         const { uid } = response.user
-        const userData = { email, name, uid }
+        const cntry=this.state.radioButton;
+        //console.log("nameeeeeeeeeeeeeeeeeeeeeeeeeeeeee:",name)
+        const userData = { email, name, ContactNumber, uid,cntry  }
+        //console.log("asdasdasdasdasdasdasd",userData)
         await this.props.firebase.createNewUser(userData)
         this.props.navigation.navigate('App')
+        //const displayName = user.displayName;
       }
     } catch (error) {
       // console.error(error)
@@ -76,6 +85,11 @@ class Signup extends Component {
       actions.setSubmitting(false)
     }
   }
+  
+  constructor(props){
+    super(props);
+    this.state = {radioButton:'value1'};
+}
 
   render() {
     const {
@@ -86,10 +100,12 @@ class Signup extends Component {
     } = this.state
     return (
       <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
         <Formik
           initialValues={{
             name: '',
             email: '',
+            ContactNumber: '',
             password: '',
             confirmPassword: '',
             check: false
@@ -108,13 +124,14 @@ class Signup extends Component {
             handleBlur,
             isSubmitting,
             setFieldValue
-          }) => (
+          }) => (           
             <Fragment>
+              <Text style={{fontWeight:'bold', textShadowColor: '#FFA500', fontSize:30, Color: '#FFA500', margin: 50 }}> Register Here</Text>
               <FormInput
                 name='name'
                 value={values.name}
                 onChangeText={handleChange('name')}
-                placeholder='Enter your full name'
+                placeholder='Enter Your Full Name'
                 iconName='md-person'
                 iconColor='#2C384A'
                 onBlur={handleBlur('name')}
@@ -124,7 +141,7 @@ class Signup extends Component {
                 name='email'
                 value={values.email}
                 onChangeText={handleChange('email')}
-                placeholder='Enter email'
+                placeholder='Enter Email'
                 autoCapitalize='none'
                 iconName='ios-mail'
                 iconColor='#2C384A'
@@ -132,14 +149,26 @@ class Signup extends Component {
               />
               <ErrorMessage errorValue={touched.email && errors.email} />
               <FormInput
+                name='ContactNumber'
+                value={values.ContactNumber}
+                onChangeText={handleChange('ContactNumber')}
+                placeholder='Enter Contact Number'
+                autoCapitalize='none'
+                iconName='ios-mail'
+                iconColor='#2C384A'
+                onBlur={handleBlur('ContactNumber')}
+              />
+              <ErrorMessage errorValue={touched.ContactNumber && errors.ContactNumber} />
+                            
+              <FormInput
                 name='password'
                 value={values.password}
                 onChangeText={handleChange('password')}
-                placeholder='Enter password'
+                placeholder='Enter Password'
                 iconName='ios-lock'
                 iconColor='#2C384A'
                 onBlur={handleBlur('password')}
-                secureTextEntry={passwordVisibility}
+                secureTextEntry={true}
                 rightIcon={
                   <TouchableOpacity onPress={this.handlePasswordVisibility}>
                     <Ionicons name={passwordIcon} size={28} color='grey' />
@@ -151,11 +180,11 @@ class Signup extends Component {
                 name='password'
                 value={values.confirmPassword}
                 onChangeText={handleChange('confirmPassword')}
-                placeholder='Confirm password'
+                placeholder='Confirm Password'
                 iconName='ios-lock'
                 iconColor='#2C384A'
                 onBlur={handleBlur('confirmPassword')}
-                secureTextEntry={confirmPasswordVisibility}
+                secureTextEntry={true}
                 rightIcon={
                   <TouchableOpacity
                     onPress={this.handleConfirmPasswordVisibility}>
@@ -170,6 +199,29 @@ class Signup extends Component {
               <ErrorMessage
                 errorValue={touched.confirmPassword && errors.confirmPassword}
               />
+              <View>
+            <CheckBox 
+                title='USA'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                checked={this.state.radioButton === 'USA'}
+                onPress={() => this.setState({radioButton: 'USA'})}
+                ></CheckBox>
+            <CheckBox 
+                title='Canada'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                checked={this.state.radioButton === 'Canada'}
+                onPress={() => this.setState({radioButton: 'Canada'})}
+                ></CheckBox> 
+            <CheckBox 
+                title='Mexico'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                checked={this.state.radioButton === 'Mexico'}
+                onPress={() => this.setState({radioButton: 'Mexico'})}
+                ></CheckBox> 
+                </View>
               <CheckBox
                 containerStyle={styles.checkBoxContainer}
                 checkedIcon='check-box'
@@ -193,7 +245,7 @@ class Signup extends Component {
               <ErrorMessage errorValue={errors.general} />
             </Fragment>
           )}
-        </Formik>
+        </Formik>      
         <Button
           title='Have an account? Login'
           onPress={this.goToLogin}
@@ -202,6 +254,7 @@ class Signup extends Component {
           }}
           type='clear'
         />
+        </ScrollView> 
       </SafeAreaView>
     )
   }
@@ -210,15 +263,20 @@ class Signup extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
     backgroundColor: '#fff',
-    marginTop: 50
+    marginTop: 5
+  },
+  scrollView: {
+    backgroundColor: '#fff',
+    marginHorizontal: 20,
   },
   logoContainer: {
     marginBottom: 15,
     alignItems: 'center'
   },
   buttonContainer: {
-    margin: 25
+    margin: 5
   },
   checkBoxContainer: {
     backgroundColor: '#fff',
