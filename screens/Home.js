@@ -1,12 +1,68 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, View, Pressable } from 'react-native'
-import { Button } from 'react-native-elements'
-import { withFirebaseHOC } from '../config/Firebase'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, { Component } from 'react';
+import { StyleSheet, Text, Button, View , SafeAreaView, FlatList,  TouchableOpacity, TouchableHighlight } from 'react-native';
+//import { Button } from 'react-native-elements';
+import { withFirebaseHOC } from '../config/Firebase';
+import FontAwesome,{SolidIcons} from 'react-native-vector-icons/FontAwesome';
+const DashboardNames = [
+  {
+    id: 1,
+    name: 'TASKS',
+    icon: 'tasks',
+    page: 'Todo',
+
+  },
+  {
+    id: 2,
+    name: 'REMINDER',
+    icon: 'bell',
+    page: 'Details'
+  },
+  {
+    id: 3,
+    name: 'ANNOUNCEMENTS',
+    icon: 'bullhorn',
+    page: 'Details'
+  },
+  {
+    id: 4,
+    name: 'MEDITATION',
+    icon: 'microphone',
+    page: 'About'
+  },
+  {
+    id: 5,
+    name: 'LEADING WOMEN',
+    icon: 'users',
+    page: 'ProfileScreen',
+    //onpress
+  },
+  // {
+  //   id: 6,
+  //   name: 'Tasks',
+  //   icon: 'users',
+  //   page: 'Todo',
+  //   //onpress
+  // },
+
+];
+
+
+
+
 
 class Home extends Component {
+  
+
+  handleOnclick = async (pagename) => {
+    try {
+      //await this.props.firebase.signOut()
+      //(`${page}`)
+      this.props.navigation.navigate(pagename)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   handleSignout = async () => {
     try {
       await this.props.firebase.signOut()
@@ -15,93 +71,111 @@ class Home extends Component {
       console.log(error)
     }
   }
+  
+  // todo = async () => {
+  //   try {
+  //     //await this.props.firebase.signOut()
+  //     this.props.navigation.navigate('Todo')
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Home</Text>
-        <Button
-          title='Signout'
-          onPress={this.handleSignout}
-          titleStyle={{
-            color: '#F57C00'
-          }}
-          type='clear'
-        />
+    const GridView = ({ name, icon,page }) => (
+      <View style={styleSheet.gridStyle}>
+      <FontAwesome
+                //icon={}
+                name={name}
+                size={40}
+      />
+      <Text onPress={()=>this.handleOnclick(page)}>{name}</Text>
+        {/* <Button title={name} onPress={()=>this.handleOnclick(page)} style={styleSheet.gridText}></Button> */}
       </View>
+    );
+    return (
+      <SafeAreaView style={styleSheet.MainContainer}>
+      <View > 
+      <FlatList
+          data={DashboardNames}
+          renderItem={({item}) => <GridView name={item.name} icon={item.icon} page={item.page}/>}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          key={item => item.id}
+        />
+        </View>
+        <View style={{position: 'absolute',bottom:0,left:0,right:0}}>
+          <View style={{ flexDirection:"row", }}>
+            <View style={{flex:1}}>
+              <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('Home')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>Home</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button color="#cfa5fa" style={{backgroundColor:'#000'}} title="home" onPress={()=>this.props.navigation.navigate('Home')} >hi</Button> */}
+            </View>
+            <View style={{flex:1}}>
+            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>Profile</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
+            </View>
+            <View style={{flex:1}}>
+            <TouchableOpacity style={{backgroundColor:'#fff'}} onPress={()=>this.handleOnclick('ProfileScreen')}>
+                <View style={styleSheet.bottomNavView}>
+                  <Text style={styleSheet.bottomNavText}>logout</Text>
+                </View>
+              </TouchableOpacity>
+              {/* <Button title="profile" onPress={()=>this.props.navigation.navigate('ProfileScreen')} >ho</Button> */}
+            </View>
+          </View>
+        
+        </View>
+      </SafeAreaView>
     )
   }
 }
 
-function Conference({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to Profile Page</Text>
-       <Pressable
-        onPress={() => navigation.navigate('Story')}
-        style={{ padding: 10, marginBottom: 10, marginTop: 10 }}
-      >
-      <Text>Go to Home</Text>
-      </Pressable>
-    </View>
-  );
-}
-
-function Story({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to Chat Window</Text>
-       <Pressable
-        onPress={() => navigation.navigate('Conference')}
-        style={{ padding: 10, marginBottom: 10, marginTop: 10 }}
-      >
-      <Text>Go to Profile</Text>
-      </Pressable>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
-function App() {
-  return (
-     <NavigationContainer>
-      <Tab.Navigator 
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            if (route.name === 'Home') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Conference') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
-            } else if (route.name === 'Story') {
-              iconName = focused ? 'ios-people' : 'ios-people';
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'blue',
-          inactiveTintColor: 'gray',
-        }}>
-        <Tab.Screen name="Home" component={Home}  />
-        <Tab.Screen name="Profile" component={Conference} />
-        <Tab.Screen name="Chat" component={Story} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
+const styleSheet = StyleSheet.create({
+ 
+  MainContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white'
+  },
+ 
+  gridStyle: {
+    flex:1,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    height: 100,
+    margin: 10,
+    backgroundColor: 'rgba(5, 70, 236, 0.48)'
+  },
+ 
+  gridText: {
+    fontSize: 20,
+    color: '#cfa5fa',
+    backgroundColor: '#cfa5fa'
+  },
+
+  gribottomButtondText: {
+    position: 'absolute',
+    bottom:0,
+    left:0,
+    fontSize: 20,
+    color: '##fff8dc',
+    backgroundColor: '#cfa5fa',
+  },
+
+  bottomNavView:{
+    height: 35,justifyContent: "center",alignItems: "center"
+  },
+
+  bottomNavText:{
+    color:'#71797e', textAlignVertical: "center",textAlign: "center",
+    fontSize:20,fontWeight:"bold"
   }
 })
 
-//export default withFirebaseHOC(Home)
-
-export default App;
+export default withFirebaseHOC(Home)

@@ -9,7 +9,6 @@ import FormButton from '../components/FormButton'
 import ErrorMessage from '../components/ErrorMessage'
 import { withFirebaseHOC } from '../config/Firebase'
 
-
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .label('Name')
@@ -43,7 +42,7 @@ class Signup extends Component {
   }
 
   goToLogin = () => this.props.navigation.navigate('Login')
-
+  
   handlePasswordVisibility = () => {
     this.setState(prevState => ({
       passwordIcon:
@@ -61,11 +60,15 @@ class Signup extends Component {
   }
 
   handleOnSignup = async (values, actions) => {
+    console.log(values,'printing values')
+    global.domain = values;
+    this.storeData= values
+
     const { name, email, password } = values
 
     try {
       const response = await this.props.firebase.signupWithEmail(
-        email,
+        email,        
         password
       )
 
@@ -74,6 +77,7 @@ class Signup extends Component {
         const userData = { email, name, uid }
         await this.props.firebase.createNewUser(userData)
         this.props.navigation.navigate('App')
+        
       }
     } catch (error) {
       // console.error(error)
@@ -86,6 +90,8 @@ class Signup extends Component {
   constructor(props){
     super(props);
     this.state = {radioButton:'value1'};
+    
+    var  storeData;
 }
 
   render() {
@@ -131,7 +137,7 @@ class Signup extends Component {
                 value={values.name}
                 onChangeText={handleChange('name')}
                 placeholder='Enter Your Full Name'
-                iconName='md-person'
+                //iconName='md-person'
                 iconColor='#2C384A'
                 onBlur={handleBlur('name')}
               />
@@ -142,7 +148,7 @@ class Signup extends Component {
                 onChangeText={handleChange('email')}
                 placeholder='Enter Email'
                 autoCapitalize='none'
-                iconName='ios-mail'
+                //iconName='ios-mail'
                 iconColor='#2C384A'
                 onBlur={handleBlur('email')}
               />
@@ -153,7 +159,7 @@ class Signup extends Component {
                 onChangeText={handleChange('ContactNumber')}
                 placeholder='Enter Contact Number'
                 autoCapitalize='none'
-                iconName='ios-mail'
+                //iconName='ios-mail'
                 iconColor='#2C384A'
                 onBlur={handleBlur('ContactNumber')}
               />
@@ -164,7 +170,7 @@ class Signup extends Component {
                 value={values.password}
                 onChangeText={handleChange('password')}
                 placeholder='Enter Password'
-                iconName='ios-lock'
+                //iconName='ios-lock'
                 iconColor='#2C384A'
                 onBlur={handleBlur('password')}
                 secureTextEntry={true}
@@ -180,7 +186,7 @@ class Signup extends Component {
                 value={values.confirmPassword}
                 onChangeText={handleChange('confirmPassword')}
                 placeholder='Confirm Password'
-                iconName='ios-lock'
+                //iconName='ios-lock'
                 iconColor='#2C384A'
                 onBlur={handleBlur('confirmPassword')}
                 secureTextEntry={true}

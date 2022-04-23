@@ -10,6 +10,7 @@ import FormButton from '../components/FormButton'
 import ErrorMessage from '../components/ErrorMessage'
 import AppLogo from '../components/AppLogo'
 import { withFirebaseHOC } from '../config/Firebase'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -45,12 +46,16 @@ class Login extends Component {
       const response = await this.props.firebase.loginWithEmail(email, password)
 
       if (response.user) {
+        //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ loggedin user is : "+response.user.email)
         this.props.navigation.navigate('App')
+        const jsonValue = JSON.stringify(response.user)
+        await AsyncStorage.setItem('userDetails', jsonValue)
       }
     } catch (error) {
       actions.setFieldError('general', error.message)
     } finally {
       actions.setSubmitting(false)
+      
     }
   }
 
@@ -84,7 +89,7 @@ class Login extends Component {
                 onChangeText={handleChange('email')}
                 placeholder='Enter email'
                 autoCapitalize='none'
-                iconName='ios-mail'
+                //iconName='ios-mail'
                 iconColor='#2C384A'
                 onBlur={handleBlur('email')}
               />
@@ -95,7 +100,7 @@ class Login extends Component {
                 onChangeText={handleChange('password')}
                 placeholder='Enter password'
                 secureTextEntry={passwordVisibility}
-                iconName='ios-lock'
+                //iconName='ios-lock'
                 iconColor='#2C384A'
                 onBlur={handleBlur('password')}
                 rightIcon={
