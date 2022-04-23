@@ -5,6 +5,7 @@ import ForgotPassword from '../screens/ForgotPassword';
 import ProfileScreen from '../screens/Profilescreen';
 import About from '../screens/About';
 import Todo from '../screens/Todo';
+import leadingLadies  from '../screens/leadingLadies';
 
 const AuthNavigation = createStackNavigator(
   {
@@ -13,7 +14,8 @@ const AuthNavigation = createStackNavigator(
     ForgotPassword: { screen: ForgotPassword },
     ProfileScreen: {screen : ProfileScreen},
     About: {screen : About},
-    Todo: { screen: Todo }
+    Todo: { screen: Todo },
+    leadingLadies: {screen: leadingLadies}
   },
   {
     initialRouteName: 'Login',

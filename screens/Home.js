@@ -33,7 +33,7 @@ const DashboardNames = [
     id: 5,
     name: 'LEADING WOMEN',
     icon: 'users',
-    page: 'ProfileScreen',
+    page: 'leadingLadies',
     //onpress
   },
   // {
