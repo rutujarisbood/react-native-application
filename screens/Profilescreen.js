@@ -108,7 +108,6 @@ class ProfileScreen extends Component {
                         /> */}
                         </View>
                         
-                        <BottomNavigator navigation={this.props.navigation} />
 
                         {/* </LinearGradient> */}
                     </View>
