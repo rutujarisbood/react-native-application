@@ -68,13 +68,13 @@ const styleSheet = StyleSheet.create({
         marginHorizontal: 16
     },
     item: {
-        backgroundColor: "#959aa3",
+        backgroundColor: "#e1d0f2",
         padding: 20,
         marginVertical: 8
     },
     header: {
         fontSize: 32,
-        backgroundColor: "#666b73"
+        backgroundColor: "#8360a6"
     },
     title: {
         fontSize: 24

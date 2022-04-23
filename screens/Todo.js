@@ -106,7 +106,7 @@ export default withFirebaseHOC(Todo);
 const styleSheet = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',//'#E8EAED',
+    backgroundColor: '#e1d0f2',//'#E8EAED',
   },
   tasksWrapper: {
     paddingTop: 80,
@@ -131,7 +131,7 @@ const styleSheet = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#000',
+    backgroundColor: '#e1d0f2',
     borderRadius: 60,
     borderColor: '#C0C0C0',
     borderWidth: 3,
@@ -140,12 +140,12 @@ const styleSheet = StyleSheet.create({
   addWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#000',
+    backgroundColor: '#e1d0f2',
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: '#C0C0C0',
-    borderWidth: 1,
+    borderWidth: 3,
     marginLeft:'15%'
   },
   addText: {},

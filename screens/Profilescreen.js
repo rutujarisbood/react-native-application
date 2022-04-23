@@ -8,6 +8,8 @@ import Users from '../model/users';
 import { withFirebaseHOC } from '../config/Firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Signup} from './Login';
+import { Appearance } from 'react-native';
+import { COLORS, SIZES } from '../constants/theme';
 var x={}; var value;
 
 class ProfileScreen extends Component {
@@ -80,7 +82,7 @@ class ProfileScreen extends Component {
                 <SafeAreaView style={styleSheet.MainContainer}>
                     <View  >
                         {/* <LinearGradient colors={['#704a96', '#8360a6', '#a681cc', '#cfa5fa', '#e1d0f2', '#ece6f2']} > */}
-                        <View style={{ backgroundColor: '#000', height: '100%' }}>
+                        <View style={{ backgroundColor: '#e1d0f2', height: '100%' }}>
                             <Image
                                 source={require('../assets/profilePic.png')}
                                 //source={{ uri: this.state.imgURL}}
@@ -88,15 +90,15 @@ class ProfileScreen extends Component {
                             />
                             <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginBottom: 50, marginBottom: 10 }} >{global.domain?.name}</Text>
                             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginStart: 10, marginBottom: 20, marginTop: 60 }}>
-                                <Ionicons name='location-outline' size={20} color={colors.black} />
+                                <Ionicons name='location-outline' size={20} color={colors.newPurple} />
                                 <Text style={{ fontWeight: '700' }}>Name : {global.domain?.name}</Text>
                             </View>
                             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginStart: 10, marginBottom: 20 }}>
-                                <Ionicons name='location-outline' size={20} color={colors.black} />
+                                <Ionicons name='location-outline' size={20} color={colors.newPurple} />
                                 <Text style={{ fontWeight: '700' }}>Email : {global.domain?.email}</Text>
                             </View>
                             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginStart: 10, marginBottom: 20 }}>
-                                <Ionicons name='location-outline' size={20} color={colors.black} />
+                                <Ionicons name='location-outline' size={20} color={colors.newPurple} />
                                 <Text style={{ fontWeight: '700' }}>Contact Number :{global.domain?.ContactNumber} </Text>
                             </View>
                             {/* <Button

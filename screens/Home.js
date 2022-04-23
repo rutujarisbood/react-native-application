@@ -84,7 +84,7 @@ class Home extends Component {
   render() {
     const GridView = ({ name, icon,page }) => (
       <View style={styleSheet.gridStyle}>
-      <FontAwesome
+      <FontAwesome 
                 //icon={}
                 name={icon}
                 size={40}
@@ -123,7 +123,7 @@ const styleSheet = StyleSheet.create({
     alignItems: 'center',
     height: 200,
     margin: 10,
-    backgroundColor: 'rgba(5, 70, 236, 0.48)'
+    backgroundColor: '#cfa5fa'//'rgba(5, 70, 236, 0.48)'
   },
  
   gridText: {

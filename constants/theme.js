@@ -21,7 +21,8 @@ const colors = {
     cream: '#fdfff5',
     brown: '#8d5845',
     yellow: '#face1b',
-    darkGrey: '#7fc0a8'
+    darkGrey: '#7fc0a8',
+    newPurple :'#C7B8F5'
   };
   
   const sizes = {
@@ -71,6 +72,7 @@ const colors = {
     black: '#171717',
     white: '#FFFFFF',
     background: '#252C4A',
+    newPurple :'#C7B8F5'
   };
   
   export const SIZES = {
