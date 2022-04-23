@@ -86,7 +86,7 @@ class Home extends Component {
       <View style={styleSheet.gridStyle}>
       <FontAwesome
                 //icon={}
-                name={name}
+                name={icon}
                 size={40}
       />
       <Text onPress={()=>this.handleOnclick(page)}>{name}</Text>
@@ -121,7 +121,7 @@ const styleSheet = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 100,
+    height: 200,
     margin: 10,
     backgroundColor: 'rgba(5, 70, 236, 0.48)'
   },
