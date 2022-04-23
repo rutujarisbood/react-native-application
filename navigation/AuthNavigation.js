@@ -6,7 +6,7 @@ import ProfileScreen from '../screens/Profilescreen';
 import About from '../screens/About';
 import Todo from '../screens/Todo';
 import Announcements from '../screens/Announcements';
-import PrivacyPolicy from '../screens/PrivacyPolicy';
+//import PrivacyPolicy from '../screens/PrivacyPolicy';
 
 const AuthNavigation = createStackNavigator(
   {
@@ -17,7 +17,7 @@ const AuthNavigation = createStackNavigator(
     About: {screen : About},
     Todo: { screen: Todo },
     Announcements:{screen:Announcements},
-    PrivacyPolicy:{screen : PrivacyPolicy}
+   // PrivacyPolicy:{screen : PrivacyPolicy}
   },
   {
     initialRouteName: 'Login',
