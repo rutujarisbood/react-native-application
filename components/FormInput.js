@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'react-native-elements'
 import { StyleSheet, View } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const FormInput = ({
   iconName,

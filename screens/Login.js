@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { StyleSheet, SafeAreaView, View, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { HideWithKeyboard } from 'react-native-hide-with-keyboard'
@@ -100,7 +100,7 @@ class Login extends Component {
                 onChangeText={handleChange('password')}
                 placeholder='Enter password'
                 secureTextEntry={passwordVisibility}
-                iconName='ios-lock'
+                iconName='ios-lock-closed'
                 iconColor='#2C384A'
                 onBlur={handleBlur('password')}
                 rightIcon={
@@ -150,14 +150,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 50
+    marginTop: 25
   },
   logoContainer: {
-    marginBottom: 15,
+    marginBottom: 10,
     alignItems: 'center'
   },
   buttonContainer: {
-    margin: 25
+    margin: 20
   }
 })
 
