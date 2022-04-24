@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
-import Task from '../components/Task';
+import Rem from '../components/Rem';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function App() {
@@ -60,7 +60,7 @@ export default function App() {
             taskItems.map((item, index) => {
               return (
                 <TouchableOpacity key={index}  onPress={() => completeTask(index)}>
-                  <Task text={item} /> 
+                  <Rem text={item} /> 
                 </TouchableOpacity>
               )
             })
