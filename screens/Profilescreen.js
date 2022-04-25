@@ -3,7 +3,6 @@ import { StyleSheet, SafeAreaView, Form, Row, Col,Button, InputGroup, Text, View
 import { colors } from '../constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 //import { LinearGradient } from 'expo-linear-gradient';
-import LinearGradient from 'react-native-linear-gradient';
 import Users from '../model/users';
 import { withFirebaseHOC } from '../config/Firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
