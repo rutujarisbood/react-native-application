@@ -12,12 +12,12 @@ const DashboardNames = [
     page: 'Todo',
 
   },
-  // {
-  //   id: 2,
-  //   name: 'REMINDER',
-  //   icon: 'bell',
-  //   page: 'Details'
-  // },
+   {
+     id: 2,
+     name: 'REMINDER',
+     icon: 'bell',
+     page: 'Reminder'
+   },
   {
     id: 3,
     name: 'ANNOUNCEMENTS',

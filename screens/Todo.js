@@ -109,7 +109,7 @@ const styleSheet = StyleSheet.create({
     backgroundColor: '#e1d0f2',//'#E8EAED',
   },
   tasksWrapper: {
-    paddingTop: 80,
+    paddingTop: 20,
     paddingHorizontal: 20,
   },
   sectionTitle: {

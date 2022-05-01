@@ -5,6 +5,7 @@ import About from '../screens/About';
 import Todo from '../screens/Todo';
 import Announcements from '../screens/Announcements';
 import leadingLadies  from '../screens/leadingLadies';
+import Reminder from '../screens/Reminder';
 
 const AppNavigation = createStackNavigator(
   {
@@ -13,6 +14,7 @@ const AppNavigation = createStackNavigator(
     About: {screen : About},
     Todo: { screen: Todo },
     Announcements:{screen: Announcements},
+    Reminder: {screen: Reminder},
     leadingLadies: {screen: leadingLadies}
   },
   {
